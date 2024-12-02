@@ -9,6 +9,7 @@ panic = "abort" # we don't need no panic-handling
 # name = "bin.rs"
 
 [dependencies]
+arrayvec = { version = "0.7.6", default-features = false }
 
 # [dependencies.libc]
 # version = "0.2"
