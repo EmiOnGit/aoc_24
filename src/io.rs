@@ -29,7 +29,6 @@ pub fn read_to_string(buffer: &mut [u8], path: *const u8) {
             break;
         }
     }
-    println!("finished reading file");
 }
 /// Safety:
 /// Expects the string to end with '\0'.
