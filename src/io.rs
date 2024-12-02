@@ -2,7 +2,7 @@ use core::slice::from_raw_parts;
 
 use crate::{
     print, println,
-    syscall::{self, strlen},
+    syscall::{self},
 };
 
 /// Reads the content of the file to the buffer.
@@ -30,4 +30,15 @@ pub fn read_to_string(buffer: &mut [u8], path: *const u8) {
         }
     }
     println!("finished reading file");
+}
+/// Safety:
+/// Expects the string to end with '\0'.
+/// Will overflow if this is not the case.
+pub unsafe fn strlen(mut s: *const u8) -> usize {
+    let mut count = 0;
+    while *s != b'\0' {
+        count += 1;
+        s = s.add(1);
+    }
+    count
 }

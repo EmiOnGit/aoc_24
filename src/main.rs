@@ -7,9 +7,9 @@ use core::slice::from_raw_parts;
 use core::str;
 use core::{arch::naked_asm, panic::PanicInfo};
 
-use aoc_24::io::read_to_string;
+use aoc_24::io::{read_to_string, strlen};
 use aoc_24::{days, prelude::*, print, println};
-use syscall::{exit, strlen};
+use syscall::exit;
 #[link(name = "c")]
 extern "C" {}
 #[no_mangle]
@@ -40,6 +40,7 @@ unsafe fn read_input_file<const BUF_SIZE: usize>(day: usize) -> [u8; BUF_SIZE] {
     read_to_string(&mut buffer, filename.as_ptr());
     return buffer;
 }
+/// Returns the day and the part that should be evaluated
 unsafe fn read_args(argc: u64, argv: *const *const u8) -> (usize, usize) {
     let mut args = from_raw_parts(argv, argc as usize).into_iter();
     // discard program path

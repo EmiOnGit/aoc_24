@@ -33,13 +33,11 @@ pub fn read(fd: FileDesc, buf: &mut [u8]) -> usize {
 }
 pub fn open(path: *const u8, flags: usize) -> Option<FileDesc> {
     let ret = unsafe { syscall3(2, path as usize, flags, 0) };
-    // let ret = raw::sys_open(path, flags);
     let reti32 = isize::from_be_bytes(ret.to_be_bytes());
     if reti32 <= 0 {
         println!("error while opening file with error", -reti32 as usize);
         None
     } else {
-        println!("opened file with: fd: ", reti32 as usize);
         Some(FileDesc::Other(reti32 as usize))
     }
 }
@@ -61,12 +59,4 @@ unsafe fn syscall3(n: usize, arg1: usize, arg2: usize, arg3: usize) -> usize {
         options(nostack, preserves_flags)
     );
     ret
-}
-pub unsafe fn strlen(mut s: *const u8) -> usize {
-    let mut count = 0;
-    while *s != b'\0' {
-        count += 1;
-        s = s.add(1);
-    }
-    count
 }
