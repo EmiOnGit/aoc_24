@@ -3,7 +3,14 @@ name = "aoc_24"
 version = "0.1.0"
 edition = "2021"
 
-
 [profile.dev]
 panic = "abort" # we don't need no panic-handling
 [dependencies]
+
+# [dependencies.libc]
+# version = "0.2"
+# default-features = false
+# features = ["extra_traits"]
+[dependencies.compiler_builtins]
+git = "https://github.com/rust-lang/compiler-builtins"
+# syscalls = { version = "0.6.18", features = ["x86_64"], default-features = false }
