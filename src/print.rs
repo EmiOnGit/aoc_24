@@ -13,10 +13,21 @@ pub fn print_intern(buffer: &[Printable]) {
 pub enum Printable<'a> {
     Text(&'a [u8]),
     Number(usize),
+    NegNumber(isize),
 }
 impl From<usize> for Printable<'_> {
     fn from(value: usize) -> Self {
         Printable::Number(value)
+    }
+}
+impl From<isize> for Printable<'_> {
+    fn from(value: isize) -> Self {
+        Printable::NegNumber(value)
+    }
+}
+impl From<i32> for Printable<'_> {
+    fn from(value: i32) -> Self {
+        Printable::NegNumber(value as isize)
     }
 }
 impl<'a> From<&'a str> for Printable<'a> {
@@ -39,6 +50,12 @@ impl<'a> Printable<'a> {
                 }
                 let c = b'0' + (n % 10) as u8;
                 print_str(&[c]);
+            }
+            Printable::NegNumber(i) => {
+                if i.is_negative() {
+                    print_str(b"-");
+                }
+                Printable::Number(i.abs() as usize).print();
             }
         }
     }
