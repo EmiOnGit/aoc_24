@@ -3,6 +3,7 @@ use crate::println;
 mod day01;
 mod day02;
 mod day03;
+mod day04;
 
 const VTABLE: &[VTableEntry] = &[
     VTableEntry::new(1, 0, day01::part1),
@@ -11,6 +12,8 @@ const VTABLE: &[VTableEntry] = &[
     VTableEntry::new(2, 1, day02::part2),
     VTableEntry::new(3, 0, day03::part1),
     VTableEntry::new(3, 1, day03::part2),
+    VTableEntry::new(4, 0, day04::part1),
+    VTableEntry::new(4, 1, day04::part2),
 ];
 struct VTableEntry {
     pub day: usize,
