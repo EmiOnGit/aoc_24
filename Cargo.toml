@@ -5,16 +5,9 @@ edition = "2021"
 
 [profile.dev]
 panic = "abort" # we don't need no panic-handling
-# [[bin]]
-# name = "bin.rs"
 
 [dependencies]
 arrayvec = { version = "0.7.6", default-features = false }
 
-# [dependencies.libc]
-# version = "0.2"
-# default-features = false
-# features = ["extra_traits"]
 [dependencies.compiler_builtins]
 git = "https://github.com/rust-lang/compiler-builtins"
-# syscalls = { version = "0.6.18", features = ["x86_64"], default-features = false }

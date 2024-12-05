@@ -4,6 +4,7 @@ mod day01;
 mod day02;
 mod day03;
 mod day04;
+mod day05;
 
 const VTABLE: &[VTableEntry] = &[
     VTableEntry::new(1, 0, day01::part1),
@@ -14,6 +15,8 @@ const VTABLE: &[VTableEntry] = &[
     VTableEntry::new(3, 1, day03::part2),
     VTableEntry::new(4, 0, day04::part1),
     VTableEntry::new(4, 1, day04::part2),
+    VTableEntry::new(5, 0, day05::part1),
+    VTableEntry::new(5, 1, day05::part2),
 ];
 struct VTableEntry {
     pub day: usize,
