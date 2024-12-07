@@ -12,6 +12,7 @@ pub fn print_intern(buffer: &[Printable]) {
 }
 pub enum Printable<'a> {
     Text(&'a [u8]),
+    Char(char),
     Number(usize),
     NegNumber(isize),
 }
@@ -33,6 +34,11 @@ impl From<i32> for Printable<'_> {
 impl<'a> From<&'a str> for Printable<'a> {
     fn from(value: &'a str) -> Self {
         Printable::Text(value.as_bytes())
+    }
+}
+impl From<char> for Printable<'_> {
+    fn from(value: char) -> Self {
+        Printable::Char(value)
     }
 }
 impl<'a> From<&'a [u8]> for Printable<'a> {
@@ -57,6 +63,7 @@ impl<'a> Printable<'a> {
                 }
                 Printable::Number(i.abs() as usize).print();
             }
+            Printable::Char(c) => print_str(&[c.to_ascii_uppercase() as u8]),
         }
     }
 }
